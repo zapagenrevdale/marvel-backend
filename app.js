@@ -2,6 +2,7 @@ import fetch from "node-fetch";
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import cors from "cors";
 
 // custom imports
 import sequelize from "./utils/database.mjs";
@@ -13,6 +14,10 @@ import movieRoutes from "./routes/movie.mjs";
 dotenv.config();
 const app = express();
 
+app.use(cors({
+  origin: "*",
+  method: ["GET", ]
+}))
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/marvel", movieRoutes);
